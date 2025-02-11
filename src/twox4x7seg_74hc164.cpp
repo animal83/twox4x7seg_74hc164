@@ -17,9 +17,9 @@
     10  =>  E   => 0x79
     11  =>  r   => 0x50
     12  =>  -   => 0x40
-		13  =>  n   => 0x54
-		14  =>  o   => 0x5C
-		15  =>  P   => 0x73
+    13  =>  n   => 0x54
+    14  =>  o   => 0x5C
+    15  =>  P   => 0x73
 */
 
 const uint8_t led_character[] PROGMEM = {
@@ -102,7 +102,7 @@ void  TwoX4X7seg::write_number_line(uint16_t value, uint8_t line=1){
         write(6, d[1]);
         write(7, d[0]);
     } else {
-        // Line 2: Positions 0 to 3
+        // Line 0: Positions 0 to 3
         write(0, d[3]);
         write(1, d[2]);
         write(2, d[1]);
