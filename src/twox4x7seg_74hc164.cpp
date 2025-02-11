@@ -90,22 +90,13 @@ void  TwoX4X7seg::write_number_line(uint16_t value, uint8_t line=1){
     // d[0] -> ones, d[1] -> tens, d[2] -> hundreds, d[3] -> thousands.
     uint8_t d[4];
     d[0] = value % 10;
-    d[1] = (value / 10) % 10;
-    d[2] = (value / 100) % 10;
-    d[3] = (value / 1000) % 10;
+    d[1] = (value > 9 ) ? (value / 10) % 10 : 0xFF;
+    d[2] = (value > 99 ) ? (value / 100) % 10 : 0xFF;
+    d[3] = (value > 999 ) ? (value / 1000) % 10 : 0xFF;
 
     // Write the digits to the corresponding positions based on the line.
-    if (line == 1) {
-        // Line 1: Positions 4 to 7 (from left: thousands to ones)
-        write(4, d[3]);
-        write(5, d[2]);
-        write(6, d[1]);
-        write(7, d[0]);
-    } else {
-        // Line 0: Positions 0 to 3
-        write(0, d[3]);
-        write(1, d[2]);
-        write(2, d[1]);
-        write(3, d[0]);
+   uint8_t startPos = (line == 1) ? 4 : 0; // Determine start position for line
+    for (uint8_t i = 0; i < 4; i++) {
+        write(startPos + i, d[3 - i]); // Write higher places first
     }
 }
