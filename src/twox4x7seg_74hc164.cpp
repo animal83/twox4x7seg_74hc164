@@ -66,7 +66,7 @@ void TwoX4X7seg::refresh(void){
 }
 
 // Write a single character to a specific digit.
-void TwoX4X7seg::write(uint8_t digit, uint8_t value, bool dot=false){
+void TwoX4X7seg::write(uint8_t digit, uint8_t value, bool dot){
 
     // Check: Only allow digits 0 to 7 and valid character indices.
     if (digit >= 8 || value >= (sizeof(led_character) / sizeof(led_character[0]))) return;
@@ -82,7 +82,7 @@ void TwoX4X7seg::write(uint8_t digit, uint8_t value, bool dot=false){
 }
 
 
-void  TwoX4X7seg::write_number_line(uint16_t value, uint8_t line=1){
+void  TwoX4X7seg::write_number_line(uint16_t value, uint8_t line){
   // Only display values up to 9999.
     if (value > 9999) return;
 

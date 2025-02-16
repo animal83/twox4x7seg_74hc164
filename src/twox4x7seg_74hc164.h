@@ -18,8 +18,8 @@ class TwoX4X7seg{
         
     private:
         uint8_t _data, _clk;
-        uint8_t _activeDigits;
         uint8_t _index;
+        uint8_t _activeDigits;
         uint8_t _out[8]; 
          
 };
