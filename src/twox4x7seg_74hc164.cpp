@@ -20,11 +20,13 @@
     13  =>  n   => 0x54
     14  =>  o   => 0x5C
     15  =>  P   => 0x73
+    16  =>      => 0x00
 */
 
 const uint8_t led_character[] PROGMEM = {
     0x3F, 0x06, 0x5B, 0x4F, 0x66, 0x6D, 0x7D, 0x07,
-    0x7F, 0x6F, 0x79, 0x50, 0x40, 0x54, 0x5c, 0x74
+    0x7F, 0x6F, 0x79, 0x50, 0x40, 0x54, 0x5c, 0x74,
+    0x00
 };
 
 
@@ -90,9 +92,9 @@ void  TwoX4X7seg::write_number_line(uint16_t value, uint8_t line){
     // d[0] -> ones, d[1] -> tens, d[2] -> hundreds, d[3] -> thousands.
     uint8_t d[4];
     d[0] = value % 10;
-    d[1] = (value > 9 ) ? (value / 10) % 10 : 0xFF;
-    d[2] = (value > 99 ) ? (value / 100) % 10 : 0xFF;
-    d[3] = (value > 999 ) ? (value / 1000) % 10 : 0xFF;
+    d[1] = (value > 9 ) ? (value / 10) % 10 : 16;
+    d[2] = (value > 99 ) ? (value / 100) % 10 : 16;
+    d[3] = (value > 999 ) ? (value / 1000) % 10 : 16;
 
     // Write the digits to the corresponding positions based on the line.
    uint8_t startPos = (line == 1) ? 4 : 0; // Determine start position for line
